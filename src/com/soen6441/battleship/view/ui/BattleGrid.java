@@ -1,4 +1,4 @@
-package com.soen6441.battleship.ui;
+package com.soen6441.battleship.view.ui;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -14,7 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import com.soen6441.battleship.util.Constants;
+import com.soen6441.battleship.controller.Controller;
+import com.soen6441.battleship.view.util.Constants;
 
 /**
  * The View side of the Battleship game, based on the MVC model. Establishes the
@@ -195,7 +196,8 @@ public class BattleGrid extends JFrame
 
 	public static void main(String[] args)
 	{
-		new BattleGrid().display();
+		//new BattleGrid().display();
+		new Controller().start();
 	}
 
 }
