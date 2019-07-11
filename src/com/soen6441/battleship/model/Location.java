@@ -19,4 +19,14 @@ public class Location {
 		return this.y;
 	}
 	
+	@Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Location))  {
+            return false;
+        }
+        Location other = (Location)obj;
+    
+        return other.getX() == this.getX() && this.getY() == other.getY();
+	}
+	
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.soen6441.battleship.exceptions.gameException;
 import com.soen6441.battleship.model.ship.Ship;
 import com.soen6441.battleship.model.ship.ShipFactory;
 import com.soen6441.battleship.view.util.Constants;
@@ -46,24 +47,38 @@ public class Board {
 		for (Ship ship : ships) {
 			if (shipLocations.containsKey(ship.getName())) {
 				ship.setLocationOccupied(shipLocations.get(ship.getName()));
-				Collections.copy(this.occupied, shipLocations.get(ship.getName()));
+				this.occupied.addAll(shipLocations.get(ship.getName()));
 			}
-		}
-		
-		//add ship locations to occupied as well.
-		
-		
+		}	
 	}
 	
 	public Map<Boolean, Ship> validateAttack(Location location){
+		
 		Map<Boolean, Ship> validation = new HashMap<>();
+		
 		validation.put(false, null);
 		if (this.occupied.contains(location) && !this.locationsVisited.contains(location)) {
+			
 			for (Ship ship : this.ships) {
 				if (ship.validateAttack(location)) {
 					validation.clear();
 					validation.put(true, ship);
 					this.locationsHit.add(location);
+					this.occupied.remove(location);
+					
+					//update remaining ships and check if game is over
+					
+					if (this.occupied.isEmpty()) {
+						try {
+							
+							Game.gameOver();
+						} catch (gameException e) {
+							this.locationsVisited.add(location);
+							
+							e.printStackTrace();
+							return validation;
+						}
+					}
 				}
 			}
 		}

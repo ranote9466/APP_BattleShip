@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import com.soen6441.battleship.controller.Controller;
+import com.soen6441.battleship.exceptions.gameException;
 import com.soen6441.battleship.view.util.Constants;
 
 /**
@@ -197,7 +198,12 @@ public class BattleGrid extends JFrame
 	public static void main(String[] args)
 	{
 		//new BattleGrid().display();
-		new Controller().start();
+		try {
+			new Controller().start();
+		} catch (gameException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

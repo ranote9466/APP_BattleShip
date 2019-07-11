@@ -54,8 +54,8 @@ public class Game {
 	
 	public Player determineFirstTurn(){
 		//we could do this at random but we take the first element in the player array
-		this.attacker = players.get(0);
-		this.attacked = players.get(1);
+		this.attacker = players.get(1);
+		this.attacked = players.get(0);
 		
 		return this.attacker;
 	}
@@ -80,6 +80,14 @@ public class Game {
 	
 	public List<Player> getPlayers() {
 		return this.players;
+	}
+	
+	
+	public static void gameOver() throws gameException {
+		//announce winner
+		//end game
+		
+		throw new gameException("GAME OVER!");
 	}
 	//the update method for the observed to send information
 }

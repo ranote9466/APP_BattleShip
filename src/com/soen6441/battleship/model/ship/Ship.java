@@ -28,26 +28,27 @@ public abstract class Ship {
 			this.locationsOccupied.remove(location);
 			this.locationsHit.add(location);
 			
-			
 			if (this.locationsOccupied.isEmpty() && this.locationsHit.size() == this.size) {
 				this.state = Constants.SHIP_STATE_DESTROYED;
 			}else {
 				this.state = Constants.SHIP_STATE_HIT;
 			}
-			
 			return true;
 		}else {
 			return false;
 		}
 	}
 	
-
 	public void setLocationHit(Location location) {
 		this.locationsHit.add(location);
 	}
 	
 	public void setLocationOccupied(List<Location> list) {
-		Collections.copy(this.locationsOccupied, list);
+		this.locationsOccupied.addAll(list);
+	}
+	
+	public List<Location> getLocationsOccupied(){
+		return this.getLocationsOccupied();
 	}
 	
 	public String getState() {

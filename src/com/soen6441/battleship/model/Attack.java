@@ -16,6 +16,7 @@ public abstract class Attack {
 		this.createLocation();
 	}
 
+	//creating the hit location for the AI
 	private void createLocation() {
 		attackPosition = new Location(1,1);
 	}
