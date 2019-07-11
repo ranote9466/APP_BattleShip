@@ -37,18 +37,20 @@ public class Controller implements IController {
 			for (Player p: this.game.getPlayers()) {
 				this.placeShips(p, shiptobeplaced);
 			}
-			Turn turn = this.play(firstPlayer, new Location(1, 5));
+			Turn turn = this.play(firstPlayer, 1, 3);
+			
 			
 			System.out.println("result" + turn.result.keySet());
 			for (Ship s: turn.result.values()) {
 				System.out.println("you have " + s.getState() + " " + turn.getAttackedPlayer().getName() + "'s " + s.getName());
+				
 			}
 		
 	}
 	
-	public Turn play(Player player, Location location) throws gameException {
+	public Turn play(Player player, Integer x, Integer y) throws gameException {
 		//Location location = new Location(1,1);
-		return this.game.play(player, location);
+		return this.game.play(player, new Location(x,y));
 		
 	}
 	
