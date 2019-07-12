@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.soen6441.battleship.model.turns.Turn;
+import com.soen6441.battleship.exceptions.gameException;
 import com.soen6441.battleship.model.ship.*;
 import com.soen6441.battleship.view.util.Constants;
 
@@ -22,7 +23,7 @@ public class Player{
 		this.board = new Board();
 	}
 	
-	public void sendAttack(Turn turn, Location attackPosition, Player attacked) {
+	public void sendAttack(Turn turn, Location attackPosition, Player attacked) throws gameException {
 		Attack attack = this.createAttack(attackPosition);
 		attacked.recieveAttack(turn, attack);
 	}
@@ -38,7 +39,7 @@ public class Player{
 	}
 	
 	
-	public void recieveAttack(Turn turn, Attack attack) {
+	public void recieveAttack(Turn turn, Attack attack) throws gameException {
 		
 		Map<Boolean, Ship> validation = board.validateAttack(attack.getAttackPosition());
 		

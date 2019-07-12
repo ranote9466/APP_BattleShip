@@ -18,7 +18,7 @@ public abstract class Attack {
 
 	//creating the hit location for the AI
 	private void createLocation() {
-		attackPosition = new Location(1,1);
+		attackPosition = new Location(2,1);
 	}
 
 

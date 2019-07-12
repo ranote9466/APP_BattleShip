@@ -34,8 +34,15 @@ public class Controller implements IController {
 		locations.add(new Location(1, 3));
 		locations.add(new Location(1, 4));
 		
+		
+		List<Location> locations2 = new ArrayList<>();
+		locations2.add(new Location(2, 1));  
+		locations2.add(new Location(2, 2));
+		locations2.add(new Location(2, 3));
+		
 		Map<String, List<Location>> shiptobeplaced = new HashMap<>();
 		shiptobeplaced.put(Constants.SHIP_NAME_BATTLESHIP, locations);
+		shiptobeplaced.put(Constants.SHIP_NAME_SUBMARINE, locations2);
 		
 		//placing ships
 			for (Player p: this.game.getPlayers()) {

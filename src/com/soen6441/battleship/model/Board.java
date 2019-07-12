@@ -52,7 +52,7 @@ public class Board {
 		}	
 	}
 	
-	public Map<Boolean, Ship> validateAttack(Location location){
+	public Map<Boolean, Ship> validateAttack(Location location) throws gameException{
 		
 		Map<Boolean, Ship> validation = new HashMap<>();
 		
@@ -69,15 +69,7 @@ public class Board {
 					//update remaining ships and check if game is over
 					
 					if (this.occupied.isEmpty()) {
-						try {
-							
-							Game.gameOver();
-						} catch (gameException e) {
-							this.locationsVisited.add(location);
-							
-							e.printStackTrace();
-							return validation;
-						}
+						Game.state = Constants.GAME_STATE_OVER;
 					}
 				}
 			}

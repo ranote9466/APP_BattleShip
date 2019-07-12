@@ -9,7 +9,7 @@ import com.soen6441.battleship.view.util.Constants;
 import com.soen6441.battleship.model.Location;
 public class Game {
 	private List<Player> players;
-	private Integer state;
+	public static Integer state;
 	public static List<Turn> turns;
 	private Player attacker;
 	private Player attacked;
@@ -39,15 +39,19 @@ public class Game {
 			this.determineFirstTurn();
 		}
 		
-		if (this.attacker != attacker) {
-			//throw new gameException("Sorry, not you turn!");
-			System.out.println("Sorry its not your turn");
+
+		if (attacker.getType() == Constants.GAME_PLAYER_COMPUTER_TYPE) {
+			this.attacked = players.get(1);
+		}else {
+			this.attacked = players.get(0);
 		}
 		
-		
-		Turn turn = new Turn(this.attacker, this.attacked, attackPosition);
+		System.out.println("Attacker type: " + attacker.getType());
+		System.out.print("Attacked: "+ this.attacked.getName());
+		Turn turn = new Turn(attacker, this.attacked, attackPosition);
 		turn.playTurn();
-		this.swapPlayers();
+		
+//		this.swapPlayers();
 		
 		
 		return turn;
@@ -59,13 +63,6 @@ public class Game {
 		this.attacked = players.get(0);
 		
 		return this.attacker;
-	}
-	
-	public void swapPlayers() {
-		Player temp = this.attacker;
-		this.attacker = this.attacked;
-		this.attacked = temp;
-		
 	}
 	
 	public Player getPlayer(Player player) {
@@ -84,11 +81,11 @@ public class Game {
 	}
 	
 	
-	public static void gameOver() throws gameException {
+	public static Integer gameOver() throws gameException {
 		//announce winner
 		//end game
 		
-		throw new gameException("GAME OVER!");
+		return state;
 	}
 	//the update method for the observed to send information
 }

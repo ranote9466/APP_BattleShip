@@ -3,6 +3,7 @@ package com.soen6441.battleship.view.listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import com.soen6441.battleship.controller.Controller;
 import com.soen6441.battleship.controller.IController;
@@ -10,6 +11,8 @@ import com.soen6441.battleship.exceptions.gameException;
 import com.soen6441.battleship.model.Player;
 import com.soen6441.battleship.model.ship.Ship;
 import com.soen6441.battleship.model.turns.Turn;
+import com.soen6441.battleship.view.util.Constants;
+import com.soen6441.battleship.view.util.randomGen;
 
 
 public class attackGridListener implements ActionListener{
@@ -24,14 +27,7 @@ private int grid,x, y;
 this.grid=grid;
 this.x=xCoordinate;
 this.y=yCoordinate;
-		/*if (grid ==1) {
-			this.processEvent(Controller.getInstance().start().getPlayers().get(1), xCoordinate, yCoordinate, grid);
-		}else {
-			this.processEvent(Controller.getInstance().start().getPlayers().get(0), null, null, grid);
-		}
-			
-		
-		*/
+
 		
 	} 
 	
@@ -59,8 +55,11 @@ this.y=yCoordinate;
 	
 	private void updateUI(Turn t, Integer grid) throws gameException {
 		
-		
-//		this.processEvent(Controller.getInstance().start().getPlayers().get(0), null, null, grid);
+		if (t.getAttacker().getType() == Constants.GAME_PLAYER_HUMAN_TYPE) {
+			System.out.println("came here");
+			System.out.println(t.getAttackedPlayer().getType());
+			this.processEvent(Controller.getInstance().start().getPlayers().get(0), randomGen.generate(Constants.BOARD_SIZE), randomGen.generate(Constants.BOARD_SIZE), grid);
+		}
 	}
 	
 	

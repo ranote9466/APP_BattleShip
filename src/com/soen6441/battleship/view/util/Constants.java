@@ -21,6 +21,7 @@ public class Constants {
     public static final String SHIP_NAME_CRUISER = "Cruiser";
     public static final String SHIP_NAME_SUBMARINE = "Submarine";
     public static final String SHIP_NAME_DESTROYER = "Destroyer";
+    public static final Integer BOARD_SIZE= 10;
 
 
 	/**
