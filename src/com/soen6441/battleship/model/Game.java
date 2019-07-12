@@ -40,7 +40,8 @@ public class Game {
 		}
 		
 		if (this.attacker != attacker) {
-			throw new gameException("Sorry, not you turn!");
+			//throw new gameException("Sorry, not you turn!");
+			System.out.println("Sorry its not your turn");
 		}
 		
 		

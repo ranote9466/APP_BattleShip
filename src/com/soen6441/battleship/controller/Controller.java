@@ -14,16 +14,20 @@ import com.soen6441.battleship.model.turns.Turn;
 import com.soen6441.battleship.view.util.Constants;
 
 public class Controller implements IController {
+	private static Controller instance;
+	
 	private Game game; //Need to add Singleton to ensure that only one game class can be created.
 	
-	public void start() throws gameException {
+	
+	public static Controller getInstance() {
+		if (instance == null)
+			instance = new Controller();
+		
+		return instance;
+	}
+	
+	public Controller() {
 		this.game = new Game();
-		//return this.game; //give this game to the game listener to handle our requests
-		
-		Player firstPlayer = this.game.determineFirstTurn();
-		
-		
-		//create the locations
 		List<Location> locations = new ArrayList<>();
 		locations.add(new Location(1, 1));  
 		locations.add(new Location(1, 2));
@@ -35,21 +39,39 @@ public class Controller implements IController {
 		
 		//placing ships
 			for (Player p: this.game.getPlayers()) {
-				this.placeShips(p, shiptobeplaced);
+				try {
+					this.placeShips(p, shiptobeplaced);
+				} catch (gameException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-			Turn turn = this.play(firstPlayer, 1, 3);
+	}
+	public Game start() throws gameException {
+		
+		; //give this game to the game listener to handle our requests
+		
+//		Player firstPlayer = this.game.determineFirstTurn();
+//		
+//		
+//		//create the locations
+		
+//			Turn turn = this.play(firstPlayer, 1, 3);
+//			
+//			
+//			System.out.println("result" + turn.result.keySet());
+//			for (Ship s: turn.result.values()) {
+//				System.out.println("you have " + s.getState() + " " + turn.getAttackedPlayer().getName() + "'s " + s.getName());
+//				
+//			}
 			
-			
-			System.out.println("result" + turn.result.keySet());
-			for (Ship s: turn.result.values()) {
-				System.out.println("you have " + s.getState() + " " + turn.getAttackedPlayer().getName() + "'s " + s.getName());
-				
-			}
+			return this.game;
 		
 	}
 	
 	public Turn play(Player player, Integer x, Integer y) throws gameException {
 		//Location location = new Location(1,1);
+		System.out.println("Locations: " + x + " " + y);
 		return this.game.play(player, new Location(x,y));
 		
 	}

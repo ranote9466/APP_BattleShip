@@ -18,9 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import com.soen6441.battleship.util.Constants;
-
-import javafx.stage.Screen;
+import com.soen6441.battleship.view.util.Constants;
+//
+//import javafx.stage.Screen;
 
 /**
  * The View side of the Battleship game, based on the MVC model. Establishes the

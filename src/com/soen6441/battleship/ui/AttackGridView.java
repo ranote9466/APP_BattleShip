@@ -14,9 +14,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.soen6441.battleship.util.Constants;
-
-import Listener.attackGridListener;
+import com.soen6441.battleship.view.util.Constants;
+import com.soen6441.battleship.view.listener.attackGridListener;
+import com.soen6441.battleship.controller.*;
+import com.soen6441.battleship.exceptions.gameException;
 
 
 public class AttackGridView
@@ -24,6 +25,7 @@ public class AttackGridView
 	private JPanel[] gameBoard = new JPanel[2];
 	private JFrame frame = new JFrame();
 	private JButton[][] grid = new JButton[Constants.BOARD_LETTERS.length][Constants.BOARD_NUMBERS.length];
+	
 
 	public final void setgameBoard()
 	{
@@ -52,7 +54,12 @@ public class AttackGridView
 
 					grid[i][j].setBackground(Color.black);
 					gameBoard[x] .add(grid[i][j]);
-					grid[i][j].addActionListener(new attackGridListener(x,i,j));
+					try {
+						grid[i][j].addActionListener(new attackGridListener(x,i,j));
+					} catch (gameException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				if (i == 0)
 				{
