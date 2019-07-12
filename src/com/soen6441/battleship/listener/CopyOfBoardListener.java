@@ -22,7 +22,7 @@ import com.soen6441.battleship.util.ShipType;
 // *****
 // *****
 
-public class BoardListener implements ActionListener
+public class CopyOfBoardListener implements ActionListener
 
 {
 	private BattleGridView battleGrid = new BattleGridView();
@@ -45,7 +45,7 @@ public class BoardListener implements ActionListener
 	private Map<String, List<Location>> shipPlacedTypeMap = new HashMap<String, List<Location>>();
 
 	// *********
-	public BoardListener(BattleGridView battleGrid)
+	public CopyOfBoardListener(BattleGridView battleGrid)
 	{
 		this.battleGrid = battleGrid;
 	}
@@ -176,6 +176,8 @@ public class BoardListener implements ActionListener
 						// Horizontal case
 						case HORIZONTAL:
 						{
+							// If it is too long to be placed then notify the
+							// user
 							if ((ships[index].getLength() + i) > placeShip.length)
 							{
 								JFrame frame = new JFrame();
@@ -196,7 +198,6 @@ public class BoardListener implements ActionListener
 								// ******
 								for (int l = 0; l < numOfShips; l++)
 								{
-
 									if (ships[l].isPlaced())
 									{
 										System.out.println(" Active ship " + activeShip + " ship placed " + ships[l].isPlaced() + " ship name " + ships[l].getName());
@@ -209,6 +210,9 @@ public class BoardListener implements ActionListener
 
 								}
 								// ******
+								// Else, if there is a ship already there, then
+								// notify
+								// the user
 								if (test)
 								{
 									JFrame frame = new JFrame();
@@ -217,10 +221,24 @@ public class BoardListener implements ActionListener
 								}
 								else
 								{
-									// ****
+									// Finally, if the ship is not too long and
+									// there is
+									// no ship there yet then place the ship
+									// System.out.println(" value of i " + i +
+									// " j is " + j);
+
+									// placeShip(activeShip,
+									// ships[index].getDirection(), i, j);
 									placeShipIntoBoard(activeShip, dirType, i, j);
 
 									shipsPlaced++;
+									// System.out.println(" value of ship placed "
+									// +
+									// shipsPlaced);
+									// If, all the player's hips have been
+									// placed
+									// then
+									// notify them that it is time to deploy.
 									if (shipsPlaced >= 5)
 									{
 										JFrame frame = new JFrame();
@@ -230,8 +248,11 @@ public class BoardListener implements ActionListener
 							}
 							break;
 						}
+						// Vertical case
 						case VERTICAL:
 						{
+							// If it is too long to be placed then notify the
+							// user
 							if ((ships[index].getLength() + j) > placeShip.length)
 							{
 								JFrame frame = new JFrame();
@@ -248,20 +269,9 @@ public class BoardListener implements ActionListener
 										test = true;
 									}
 								}
-								// ******
-								for (int l = 0; l < numOfShips; l++)
-								{
-
-									if (ships[l].isPlaced())
-									{
-										if (activeShip.equals(ships[l].getName()))
-										{
-											test = true;
-										}
-									}
-
-								}
-								// ******
+								// Else, if there is a ship already there, then
+								// notify
+								// the user
 								if (test)
 								{
 									JFrame frame = new JFrame();
@@ -270,9 +280,23 @@ public class BoardListener implements ActionListener
 								}
 								else
 								{
+									// Finally, if the ship is not too long and
+									// there is
+									// no ship there yet then place the ship
+									// System.out.println(" 2nd else value of i "
+									// +
+									// i + " j is " + j + " value of dirct is "
+									// +
+									// dirType);
 									placeShipIntoBoard(activeShip, dirType, i, j);
+									// placeShip(activeShip,
+									// ships[index].getDirection(), i, j);
 									System.out.println();
 									shipsPlaced++;
+									// If, all the player's hips have been
+									// placed
+									// then
+									// notify them that it is time to deploy.
 									if (shipsPlaced >= 5)
 									{
 										JFrame frame = new JFrame();
@@ -297,6 +321,7 @@ public class BoardListener implements ActionListener
 	// *** change to integer
 	public final void placeShipIntoBoard(ShipType shipType, DirectionType dirType, Integer startX, Integer startY)
 	{
+		// System.out.println(" inside placeShip " + shipType);
 
 		int length = 0;
 		int index = 0;
@@ -391,7 +416,6 @@ public class BoardListener implements ActionListener
 
 			// *******
 			shipPlacedTypeMap.put(shipType.toString(), shipPlacedLocList);
-
 			// *******
 
 			break;

@@ -7,8 +7,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -73,10 +71,8 @@ public class BattleGridView extends JFrame
 				{
 					grid[x][y] = new JButton();
 					battleGridBoard.add(grid[x][y]);
-					// ********************
 					grid[x][y].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GREEN));
 					grid[x][y].setBackground(Color.black);
-					// ********************
 					grid[x][y].addActionListener(new BoardListener(this));
 				}
 				if (x == 0)
@@ -144,22 +140,10 @@ public class BattleGridView extends JFrame
 		setBattleGridBoard();
 
 		mainFrame.setLayout(new GridLayout());
-		JMenuBar menuBar = new JMenuBar();
-		JMenu menu = new JMenu("Battle Menu");
-		menuBar.add(menu);
-		JMenuItem menuItem = new JMenu("New Game");
-		menu.add(menuItem);
-		singlePlayer = new JMenuItem("Single Player");
-		twoPlayer = new JMenuItem("Two Player");
-		menuItem.add(singlePlayer);
-		menuItem.add(twoPlayer);
-		// mainFrame.setJMenuBar(menuBar);
-		// mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		player1Frame.add(inputPanel);
 		player1Frame.add(battleGridBoard);
 		player1Frame.pack();
-		player1Frame.setJMenuBar(menuBar);
 		player1Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		player1Frame.setExtendedState(MAXIMIZED_BOTH);
 		player1Frame.setVisible(true);
@@ -200,15 +184,4 @@ public class BattleGridView extends JFrame
 		return grid[a][b];
 	}
 
-	/*
-	 * public final void addDeployListener(ActionListener dal) {
-	 * placeShips.addActionListener(dal); }
-	 * 
-	 * public final void addClearListener(ActionListener cal) {
-	 * reset.addActionListener(cal); }
-	 */
-	/*
-	 * public static void main(String[] args) { new BattleGridView().display();
-	 * }
-	 */
 }
