@@ -1,12 +1,16 @@
 package com.soen6441.battleship.ui;
 
+import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -15,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import com.soen6441.battleship.util.Constants;
+
+import javafx.stage.Screen;
 
 /**
  * The View side of the Battleship game, based on the MVC model. Establishes the
@@ -70,6 +76,9 @@ public class BattleGrid extends JFrame
 				if (x != 0 && y != 0)
 				{
 					grid[x][y] = new JButton();
+					grid[x][y].setBorder(BorderFactory.createMatteBorder(
+                            1, 1, 1, 1, Color.GREEN));
+					grid[x][y].setBackground(Color.black);
 					battleGridBoard.add(grid[x][y]);
 				}
 				if (x == 0)
@@ -104,6 +113,7 @@ public class BattleGrid extends JFrame
 	public final void display()
 	{
 		player1Frame.setLayout(new GridLayout());
+		
 		JPanel inputPanel = new JPanel();
 		JTextField textField = new JTextField();
 		textField.setText("Choose a ship and its direction");
@@ -152,9 +162,11 @@ public class BattleGrid extends JFrame
 
 		player1Frame.add(inputPanel);
 		player1Frame.add(battleGridBoard);
+		
 		player1Frame.pack();
 		player1Frame.setJMenuBar(menuBar);
 		player1Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		player1Frame.setExtendedState(MAXIMIZED_BOTH);
 		player1Frame.setVisible(true);
 	}
 

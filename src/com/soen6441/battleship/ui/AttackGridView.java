@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 
 import com.soen6441.battleship.util.Constants;
 
+import Listener.attackGridListener;
+
 
 public class AttackGridView
 {
@@ -50,7 +52,7 @@ public class AttackGridView
 
 					grid[i][j].setBackground(Color.black);
 					gameBoard[x] .add(grid[i][j]);
-					// grid[i][j].addActionListener(new BoardListener());
+					grid[i][j].addActionListener(new attackGridListener(x,i,j));
 				}
 				if (i == 0)
 				{
