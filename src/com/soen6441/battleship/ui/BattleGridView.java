@@ -1,7 +1,7 @@
 package com.soen6441.battleship.ui;
 
+import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import com.soen6441.battleship.listener.BoardListener;
+import com.soen6441.battleship.listener.ShipListener;
 import com.soen6441.battleship.util.Constants;
 
 /**
@@ -22,17 +24,14 @@ import com.soen6441.battleship.util.Constants;
  * necessary menu bars, combo boxes, buttons, and provides methods to add action
  * listeners to those components.
  * 
- * @author Nathan Newman
+ * @author Sandeep Kaur Ranote
  * 
  * @convention
- * @correspondence Main GUI of the Battleship game
+ * @correspondence Main GUI of the BattleshipGrid game
  * 
  */
-public class BattleGrid extends JFrame
+public class BattleGridView extends JFrame
 {
-	/**
-	 * Frame used to hold the ship input panel for player 1.
-	 */
 	private JFrame player1Frame;
 	private JFrame mainFrame;
 	private JComboBox shipType;
@@ -41,13 +40,16 @@ public class BattleGrid extends JFrame
 	private JButton reset;
 	private JMenuItem singlePlayer;
 	private JMenuItem twoPlayer;
-	private JPanel battleGridBoard = new JPanel();
+	private JPanel battleGridBoard;
 	private JButton[][] grid = new JButton[Constants.BOARD_LETTERS.length][Constants.BOARD_NUMBERS.length];
+	private String[] defaultShipType =
+	{ "CARRIER" };
 
-	public BattleGrid()
+	public BattleGridView()
 	{
 		player1Frame = new JFrame();
 		mainFrame = new JFrame("Battleship!");
+		battleGridBoard = new JPanel();
 	}
 
 	private static String[] ships =
@@ -71,6 +73,11 @@ public class BattleGrid extends JFrame
 				{
 					grid[x][y] = new JButton();
 					battleGridBoard.add(grid[x][y]);
+					// ********************
+					grid[x][y].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GREEN));
+					grid[x][y].setBackground(Color.black);
+					// ********************
+					grid[x][y].addActionListener(new BoardListener(this));
 				}
 				if (x == 0)
 				{
@@ -80,6 +87,7 @@ public class BattleGrid extends JFrame
 						textField.setEditable(false);
 						textField.setHorizontalAlignment((int) JFrame.CENTER_ALIGNMENT);
 						battleGridBoard.add(textField);
+
 					}
 					else
 					{
@@ -99,6 +107,7 @@ public class BattleGrid extends JFrame
 		}
 		battleGridBoard.setLayout(new GridLayout(Constants.BOARD_LETTERS.length, Constants.BOARD_NUMBERS.length));
 		battleGridBoard.setVisible(true);
+
 	}
 
 	public final void display()
@@ -106,13 +115,13 @@ public class BattleGrid extends JFrame
 		player1Frame.setLayout(new GridLayout());
 		JPanel inputPanel = new JPanel();
 		JTextField textField = new JTextField();
-		textField.setText("Choose a ship and its direction");
+		textField.setText("Place your ships ");
 		textField.setEditable(false);
 		inputPanel.add(textField);
 
 		shipType = new JComboBox(ships);
 		shipType.setSelectedIndex(0);
-
+		shipType.setSelectedItem("CARRIER");
 		TitledBorder titleBorder;
 		titleBorder = BorderFactory.createTitledBorder("Ship Type");
 		shipType.setBorder(titleBorder);
@@ -120,7 +129,6 @@ public class BattleGrid extends JFrame
 
 		directionType = new JComboBox(directions);
 		directionType.setSelectedIndex(0);
-		// dirChoice.addActionListener(new DirectionListener());
 
 		titleBorder = BorderFactory.createTitledBorder("Direction Type");
 		directionType.setBorder(titleBorder);
@@ -128,12 +136,10 @@ public class BattleGrid extends JFrame
 
 		placeShips = new JButton("Place Ships");
 		placeShips.setEnabled(true);
-		// deploy.addActionListener(new DeployListener());
 		inputPanel.add(placeShips);
 
 		reset = new JButton("Reset");
 		placeShips.setEnabled(true);
-		// clear.addActionListener(new ClearListener());
 		inputPanel.add(reset);
 		setBattleGridBoard();
 
@@ -155,7 +161,13 @@ public class BattleGrid extends JFrame
 		player1Frame.pack();
 		player1Frame.setJMenuBar(menuBar);
 		player1Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		player1Frame.setExtendedState(MAXIMIZED_BOTH);
 		player1Frame.setVisible(true);
+
+		shipType.addActionListener(new ShipListener(this));
+		directionType.addActionListener(new ShipListener(this));
+		reset.addActionListener(new BoardListener(this));
+		placeShips.addActionListener(new BoardListener(this));
 	}
 
 	public final JPanel getBattleGridBoard()
@@ -183,19 +195,20 @@ public class BattleGrid extends JFrame
 		return directionType;
 	}
 
-	public final void addDeployListener(ActionListener dal)
+	public final JButton getGrid(int a, int b)
 	{
-		placeShips.addActionListener(dal);
+		return grid[a][b];
 	}
 
-	public final void addClearListener(ActionListener cal)
-	{
-		reset.addActionListener(cal);
-	}
-
-	public static void main(String[] args)
-	{
-		new BattleGrid().display();
-	}
-
+	/*
+	 * public final void addDeployListener(ActionListener dal) {
+	 * placeShips.addActionListener(dal); }
+	 * 
+	 * public final void addClearListener(ActionListener cal) {
+	 * reset.addActionListener(cal); }
+	 */
+	/*
+	 * public static void main(String[] args) { new BattleGridView().display();
+	 * }
+	 */
 }
