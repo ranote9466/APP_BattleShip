@@ -2,14 +2,21 @@ Battleship Board Game
 =======================
 The aim of this project is to learn Java Swing development by creating board games.
 
-The Battleship game is basically a guessing board game played by 2 players on Grids where each player plays turn by turn, in whichg the fleet of ships of a player are marked. The location of ships of one player is hidden from those of other player. The main objective of this game is to destroy all the ships of other player.
+The Battleship game is basically a guessing board game played by 2 players on Grids where each player plays turn by turn, in which the fleet of ships of a player are marked. The location of ships of one player is hidden from those of other player. The main objective of this game is to destroy all the ships of other player.
 
 ### Design Models Used
 
-.
-    ├── Architecture                       # MVC Model
-    ├── UML                                # Class Diagram    
-    ├── Design Patterns                    # Factory and Singleton Patterns
+1. Architecture - MVC Model
+2. UML - Class Diagram 
+3. Design Patterns - Factory and Singleton Patterns
+
+### Versioning Control Tool
+
+Github
+
+### Setup
+
+Clone the code from github in local machine and integrate in Eclipse. Go to com/SOEN6441/Battleship/View/StartPage.java and run the application.
 
 ### References
 
