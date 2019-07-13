@@ -18,12 +18,6 @@ Github
 
 Clone the code from github in local machine and integrate in Eclipse. Go to com/SOEN6441/Battleship/View/StartPage.java and run the application.
 
-### References
-
-1. https://github.com/memotoro/battleship-design-patterns
-2. https://github.com/newmanna/Battleship -- MVC implemented
-3. https://github.com/poimenidis/Battleship/tree/master/src/guiPackage
-
 ### Team Member Details
 
 1. Sandeep Kaur Ranote : 40089795
