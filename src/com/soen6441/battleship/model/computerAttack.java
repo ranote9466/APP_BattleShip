@@ -1,9 +1,10 @@
 package com.soen6441.battleship.model;
 
-public class computerAttack extends Attack{
+public class ComputerAttack extends Attack
+{
 
-	
-	computerAttack(){
+	ComputerAttack()
+	{
 		super();
 	}
 }

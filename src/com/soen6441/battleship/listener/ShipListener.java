@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.soen6441.battleship.ui.BattleGridView;
-import com.soen6441.battleship.util.Constants;
-import com.soen6441.battleship.util.DirectionType;
-import com.soen6441.battleship.util.ShipType;
+import com.soen6441.battleship.view.util.Constants;
+import com.soen6441.battleship.view.util.DirectionType;
+import com.soen6441.battleship.view.util.ShipType;
 
 public class ShipListener implements ActionListener
 {
@@ -21,13 +21,9 @@ public class ShipListener implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
-		// System.out.println("Entered shiplistener");
-		// Get the index of the selected ship from the combo box
 		int shipIndex = battleGrid.getShipTypeComboBox().getSelectedIndex();
 		int i = shipIndex;
 		ShipType shipType = null;
-		// Figure out which ship is associated with the index of the combo
-		// box
 		switch (shipIndex)
 		{
 		case Constants.COMBX_CARRINDEX:
@@ -65,12 +61,8 @@ public class ShipListener implements ActionListener
 
 		}
 		}
-		// Figure out the current direction selected in the direction combo
-		// box
 
 		boardlistener.setActiveShip(shipType);
-		// System.out.println(" value in board lis is set" +
-		// boardlistener.getActiveShip());
 		int dirIndex = battleGrid.getDirTypeComboBox().getSelectedIndex();
 		DirectionType dirType = null;
 		switch (dirIndex)
@@ -90,11 +82,7 @@ public class ShipListener implements ActionListener
 
 		}
 		}
-		// Set the currently selected ship's direction to the currently
-		// selected direction
 
 		boardlistener.setDirType(dirType);
-		// System.out.println("Value in board is set for dir " +
-		// boardlistener.getDirType());
 	}
 }

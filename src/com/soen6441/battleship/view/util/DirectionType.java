@@ -1,4 +1,4 @@
-package com.soen6441.battleship.util;
+package com.soen6441.battleship.view.util;
 
 public enum DirectionType
 {

@@ -1,8 +1,8 @@
 package com.soen6441.battleship.service;
 
-import com.soen6441.battleship.util.Constants;
-import com.soen6441.battleship.util.DirectionType;
-import com.soen6441.battleship.util.ShipType;
+import com.soen6441.battleship.view.util.Constants;
+import com.soen6441.battleship.view.util.DirectionType;
+import com.soen6441.battleship.view.util.ShipType;
 
 public class ShipDetails implements IShipDetails
 {
@@ -55,35 +55,35 @@ public class ShipDetails implements IShipDetails
 		case CARRIER:
 		{
 			name = "Carrier";
-			length = Constants.CARRIERLENGTH;
+			length = Constants.SHIP_SIZE_CARRIER;
 			hitsLeft = length;
 			break;
 		}
 		case BATTLESHIP:
 		{
 			name = "Battleship";
-			length = Constants.BATTLESHIPLENGTH;
+			length = Constants.SHIP_SIZE_BATTLESHIP;
 			hitsLeft = length;
 			break;
 		}
 		case CRUISER:
 		{
 			name = "Cruiser";
-			length = Constants.CRUISERLENGTH;
+			length = Constants.SHIP_SIZE_CRUISER;
 			hitsLeft = length;
 			break;
 		}
 		case SUBMARINE:
 		{
 			name = "Submarine";
-			length = Constants.SUBMARINELENGTH;
+			length = Constants.SHIP_SIZE_SUBMARINE;
 			hitsLeft = length;
 			break;
 		}
 		case DESTROYER:
 		{
 			name = "Destroyer";
-			length = Constants.DESTROYERLENGTH;
+			length = Constants.SHIP_SIZE_DESTROYER;
 			hitsLeft = length;
 			break;
 		}

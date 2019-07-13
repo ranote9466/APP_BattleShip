@@ -14,7 +14,7 @@ import javax.swing.border.TitledBorder;
 
 import com.soen6441.battleship.listener.BoardListener;
 import com.soen6441.battleship.listener.ShipListener;
-import com.soen6441.battleship.util.Constants;
+import com.soen6441.battleship.view.util.Constants;
 
 /**
  * The View side of the Battleship game, based on the MVC model. Establishes the
@@ -42,12 +42,13 @@ public class BattleGridView extends JFrame
 	private JButton[][] grid = new JButton[Constants.BOARD_LETTERS.length][Constants.BOARD_NUMBERS.length];
 	private String[] defaultShipType =
 	{ "CARRIER" };
+	public static BattleGridView battleGridView_instance = null;
 
-	public BattleGridView()
+	public static BattleGridView getInstance()
 	{
-		player1Frame = new JFrame();
-		mainFrame = new JFrame("Battleship!");
-		battleGridBoard = new JPanel();
+		if (battleGridView_instance == null)
+			battleGridView_instance = new BattleGridView();
+		return battleGridView_instance;
 	}
 
 	private static String[] ships =
@@ -73,7 +74,7 @@ public class BattleGridView extends JFrame
 					battleGridBoard.add(grid[x][y]);
 					grid[x][y].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GREEN));
 					grid[x][y].setBackground(Color.black);
-					grid[x][y].addActionListener(new BoardListener(this));
+					grid[x][y].addActionListener(new BoardListener(battleGridView_instance));
 				}
 				if (x == 0)
 				{
@@ -108,12 +109,16 @@ public class BattleGridView extends JFrame
 
 	public final void display()
 	{
+		player1Frame = new JFrame();
+		mainFrame = new JFrame("Battleship!");
+		battleGridBoard = new JPanel();
+
 		player1Frame.setLayout(new GridLayout());
 		JPanel inputPanel = new JPanel();
-		JTextField textField = new JTextField();
-		textField.setText("Place your ships ");
-		textField.setEditable(false);
-		inputPanel.add(textField);
+		// JTextField textField = new JTextField();
+		// textField.setText("Place your ships ");
+		// textField.setEditable(false);
+		// inputPanel.add(textField);
 
 		shipType = new JComboBox(ships);
 		shipType.setSelectedIndex(0);
