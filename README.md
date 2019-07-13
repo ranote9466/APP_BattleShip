@@ -1,9 +1,9 @@
 Battleship Board Game
 =======================
 The aim of this project is to learn Java Swing development bycreating board games.
-```
-*** Team Member Details ***
-```
+
+### Team Member Details
+
 1. Sandeep Ksaur Ranote : 40089795
 2. Harsh Rawal : 40076067
 3. Uhegbu Emmanuel : 40041817
